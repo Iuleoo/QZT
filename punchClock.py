@@ -2,13 +2,18 @@ import json
 import requests
 import base64
 import database
+import sys
+
+# python3 xxx.py 391998
+# 从命令行参数中获取用户 ID
+user_id = sys.argv[1]
 
 # 连接到数据库
 with database.connect_to_database() as connection:
     # 创建游标
     with connection.cursor() as cursor:
         # 查询以获取用户令牌和用户名
-        user_id = 391998
+        # user_id = 391998
         sql_get_user_token = f"SELECT token FROM user WHERE userId = '{user_id}'"
         sql_get_user_name = f"SELECT userName FROM user WHERE userId = '{user_id}'"
         sql_get_user_address = f"SELECT address FROM user_info WHERE userId = '{user_id}'"
@@ -84,8 +89,6 @@ else:
 
 titles = "{},{}".format(user_name, code_ststus)
 contents = "打卡状态：{}\n打卡地址：{}".format(msg, address_lite)
-# print(titles)
-# print(contents)
 
 # pushplus 一对一推送
 
