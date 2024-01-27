@@ -1,6 +1,7 @@
 import login
 import json
 import database
+import sys
 
 # 获取验证码信息
 returnData = login.captchaGget()
@@ -32,8 +33,13 @@ captchaVerification = login.encryptAesEcb(tokenCoordinateBytes, secretKeyBytes)
 login.checkVerification(encryptedVerification, token.decode('utf-8'))
 
 # 登录
-phone = 17388542263
-passwd = "06180136"
+# phone = 17388542263
+# passwd = "06180136"
+# Get the phone number and password from the command-line arguments
+# python3 xxx.py 17388542263 06180136
+phone = sys.argv[1]
+passwd = sys.argv[2]
+
 login_data = login.login(phone, passwd, captchaVerification)
 
 # 将得到的登录信息保存为JSON
