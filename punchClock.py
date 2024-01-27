@@ -60,5 +60,48 @@ payload = base64.b64decode(encoded_address64)
 # 发送请求
 response0 = requests.request("POST", "http://gwsxapp.gzzjzhy.com/api/workClock/punchClock", headers=headers, data=payload)
 
-# 打印请求结果
+# 打印请求结果 debug 使用
 # print(response0.json())
+
+# 将返回信息保存为 JSON
+with open('response_data.json', 'w') as json_file:
+    json.dump(response0.json(), json_file)
+
+# 重新加载这些 JSON 数据
+with open('response_data.json', 'r') as json_file:
+    response_data_loaded = json.load(json_file)
+
+# 打卡内容
+msg = (response_data_loaded['msg'])
+
+# 打卡状态码
+code = (response_data_loaded['code'])
+
+if code == 0:
+    code_ststus = '打卡成功'
+else:
+    code_ststus = '打卡失败'
+
+# pushplus 推送
+
+titles = "{},{}".format(user_name, code_ststus)
+contents = address_lite
+print(titles)
+print(contents)
+
+url = "https://www.pushplus.plus/send"
+
+payload = json.dumps({
+   "token": "87cdcff73305443c9eb690fe2169fa31",
+   "title": titles,
+   "content": contents,
+   "template": "markdown"
+})
+headers = {
+   'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
+   'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
