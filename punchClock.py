@@ -61,4 +61,4 @@ payload = base64.b64decode(encoded_address64)
 response0 = requests.request("POST", "http://gwsxapp.gzzjzhy.com/api/workClock/punchClock", headers=headers, data=payload)
 
 # 打印请求结果
-print(response0.json())
+# print(response0.json())

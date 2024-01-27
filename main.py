@@ -50,34 +50,44 @@ connection = database.connect_to_database()
 # 创建游标
 cursor = connection.cursor()
 
-userId = (login_data_loaded['data']['userId'])
-userName = (login_data_loaded['data']['userName'])
-phonenumber = (login_data_loaded['data']['phonenumber'])
-sexName = (login_data_loaded['data']['sexName'])
-schoolName = (login_data_loaded['data']['schoolName'])
-collegeName = (login_data_loaded['data']['collegeName'])
-majorName = (login_data_loaded['data']['majorName'])
-className = (login_data_loaded['data']['className'])
-teacherName = (login_data_loaded['data']['teacherName'])
-enterpriseId = (login_data_loaded['data']['enterpriseId'])
-enterpriseName = (login_data_loaded['data']['enterpriseName'])
-studentCode = (login_data_loaded['data']['studentCode'])
-token = (login_data_loaded['data']['token'])
-expTime = (login_data_loaded['data']['expTime'])
+# 提取登录信息
+userId = login_data_loaded['data']['userId']
+userName = login_data_loaded['data']['userName']
+phonenumber = login_data_loaded['data']['phonenumber']
+sexName = login_data_loaded['data']['sexName']
+schoolName = login_data_loaded['data']['schoolName']
+collegeName = login_data_loaded['data']['collegeName']
+majorName = login_data_loaded['data']['majorName']
+className = login_data_loaded['data']['className']
+teacherName = login_data_loaded['data']['teacherName']
+enterpriseId = login_data_loaded['data']['enterpriseId']
+enterpriseName = login_data_loaded['data']['enterpriseName']
+studentCode = login_data_loaded['data']['studentCode']
+token = login_data_loaded['data']['token']
+expTime = login_data_loaded['data']['expTime']
 
 # 检查用户是否存在于 user 表中
 sql = f"SELECT * FROM user WHERE userId = '{userId}'"
 cursor.execute(sql)
 result = cursor.fetchall()
 
-# 如果用户存在，则更新 user 表中的 token
+# 准备 SQL 语句
+user_sql = None
+user_info_sql = None
+
+# 根据用户是否存在，准备相应的 SQL 语句
 if result:
     user_sql = f"""
         UPDATE user
         SET token = '{token}'
         WHERE userId = '{userId}'
     """
-# 如果用户不存在，则将用户数据插入 user 表中
+
+    user_info_sql = f"""
+        UPDATE user_info
+        SET phonenumber = '{phonenumber}'
+        WHERE userId = '{userId}'
+    """
 else:
     user_sql = f"""
     INSERT INTO user (
@@ -114,20 +124,6 @@ else:
     );
     """
 
-# 检查用户是否存在于 user_info 表中
-sql = f"SELECT * FROM user_info WHERE userId = '{userId}'"
-cursor.execute(sql)
-result = cursor.fetchall()
-
-# 如果用户存在，则更新 user_info 表中的 phonenumber
-if result:
-    user_info_sql = f"""
-        UPDATE user_info
-        SET phonenumber = '{phonenumber}'
-        WHERE userId = '{userId}'
-    """
-# 如果用户不存在，则将用户数据插入 user_info 表中
-else:
     user_info_sql = f"""
     INSERT INTO user_info (userId, userName, phonenumber)
     VALUES (
