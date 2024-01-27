@@ -8,7 +8,7 @@ with database.connect_to_database() as connection:
     # 创建游标
     with connection.cursor() as cursor:
         # 查询以获取用户令牌和用户名
-        user_id = 391997
+        user_id = 391998
         sql_get_user_token = f"SELECT token FROM user WHERE userId = '{user_id}'"
         sql_get_user_name = f"SELECT userName FROM user WHERE userId = '{user_id}'"
         sql_get_user_address = f"SELECT address FROM user_info WHERE userId = '{user_id}'"
@@ -61,7 +61,7 @@ payload = base64.b64decode(encoded_address64)
 response0 = requests.request("POST", "http://gwsxapp.gzzjzhy.com/api/workClock/punchClock", headers=headers, data=payload)
 
 # 打印请求结果 debug 使用
-# print(response0.json())
+#print(response0.json())
 
 # 将返回信息保存为 JSON
 with open('response_data.json', 'w') as json_file:
@@ -82,12 +82,32 @@ if code == 0:
 else:
     code_ststus = '打卡失败'
 
-# pushplus 推送
-
 titles = "{},{}".format(user_name, code_ststus)
-contents = address_lite
-print(titles)
-print(contents)
+contents = "打卡状态：{}\n打卡地址：{}".format(msg, address_lite)
+# print(titles)
+# print(contents)
+
+# pushplus 一对一推送
+
+# url = "https://www.pushplus.plus/send"
+
+# payload = json.dumps({
+#    "token": "87cdcff73305443c9eb690fe2169fa31",
+#    "title": titles,
+#    "content": contents,
+#    "template": "markdown"
+# })
+# headers = {
+#    'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
+#    'Content-Type': 'application/json'
+# }
+
+# response = requests.request("POST", url, headers=headers, data=payload)
+
+# print(response.text)
+
+
+# pushplus 一对多推送
 
 url = "https://www.pushplus.plus/send"
 
@@ -95,6 +115,7 @@ payload = json.dumps({
    "token": "87cdcff73305443c9eb690fe2169fa31",
    "title": titles,
    "content": contents,
+   "topic": "2024",
    "template": "markdown"
 })
 headers = {
