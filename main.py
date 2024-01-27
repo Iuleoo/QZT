@@ -1,8 +1,5 @@
 import login
 import json
-import re
-import mysql.connector
-import pickle
 import database
 
 # 获取验证码信息
