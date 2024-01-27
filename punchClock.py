@@ -119,7 +119,7 @@ payload = json.dumps({
    "title": titles,
    "content": contents,
    "topic": "2024",
-   "template": "markdown"
+   "template": "html"
 })
 headers = {
    'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
