@@ -7,7 +7,6 @@ import cv2
 import numpy as np
 from aesEncode import encryptAesEcb, decryptAesEcb
 import base64
-import mysql.connector
 
 # 获取当前时间戳（毫秒）
 current_time_seconds = time.time()
