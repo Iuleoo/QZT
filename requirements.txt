@@ -1,0 +1,8 @@
+crypto==1.4.1
+mysql-connector-python==8.3.0
+mysql-replication==0.21
+numpy==1.26.3
+opencv-python==4.9.0.80
+PyMySQL==0.9.3
+PyYAML==6.0.1
+requests==2.31.0
