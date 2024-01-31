@@ -39,7 +39,7 @@ def login(phone, passwd, encrypted_token):
     }
     response = requests.post(url, data=json.dumps(data), headers=headers)
     # 打印返回个人信息
-    print(response.json())
+    # print(response.json())
     return response.json()
 
 # 验证码验证函数
@@ -68,7 +68,7 @@ def checkVerification(encryptedVerification, tokenCoordinateByte):
     }
     response = requests.post(url, data=json.dumps(data), headers=headers)
     # 打印返回 第一条JSON
-    print(response.json())
+    # print(response.json())
     return response.json()
 
 # 获取验证码函数
