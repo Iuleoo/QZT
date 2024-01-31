@@ -23,9 +23,9 @@ apt install libgl1-mesa-glx
 pip install -r requirements.txt
 ```
 > Linux 使用虚拟环境
-> python3 -m venv /opt/qzt/qzt_venv
-> source qzt_venv/bin/activate
-> pip install -r requirements.txt
+python3 -m venv /opt/qzt/qzt_venv
+source qzt_venv/bin/activate
+pip install -r requirements.txt
 
 ## 使用
 
