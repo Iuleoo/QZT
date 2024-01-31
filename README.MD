@@ -14,19 +14,23 @@
 - database.py：数据库配置。
 - punchClock.py：上下班打卡和打卡状态推送。
 
-## 安装
+## 依赖安装
 
-ImportError: libGL.so.1: cannot open shared object file: No such file or directory
-apt install libgl1-mesa-glx
-
-```
-pip install -r requirements.txt
-```
 > Linux 使用虚拟环境
 python3 -m venv /opt/qzt/qzt_venv
 source qzt_venv/bin/activate
 pip install -r requirements.txt
 
+```
+pip install -r requirements.txt
+apt install -y make gcc
+```
+
+报错：ImportError: libGL.so.1: cannot open shared object file: No such file or directory
+解决
+```
+apt install -y libgl1-mesa-glx
+```
 ## 使用
 
 1. 在 main.py 中设置数据库地址。
