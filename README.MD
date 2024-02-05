@@ -8,6 +8,19 @@
 
 ![push](images/pushplush.png)
 
+## TODO
+
+- [X] 获取 Token、ID
+- [X] 获取 打卡地址
+- [X] 支持 MYSQL
+- [X] 上下班打卡
+- [ ] 月报、周报功能
+- [ ] 补卡
+- [X] 多用户功能
+- [ ] PostgreSQL/SQLite
+- [ ] WEB UI 界面
+- [ ] 企业微信、钉钉、Telegram、QQ等消息平台
+
 ## 依赖安装
 
 版本推荐：

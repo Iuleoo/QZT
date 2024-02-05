@@ -97,26 +97,7 @@ timestamp_str = str(timestamp)
 titles = "{},{}".format(user_name, code_ststus)
 contents = "打卡状态：{}\n打卡地址：{}\n服务器时间戳：{}".format(msg, address_lite, timestamp_str)
 
-# pushplus 一对一推送
-
-# url = "https://www.pushplus.plus/send"
-
-# payload = json.dumps({
-#    "token": "87cdcff73305443c9eb690fe2169fa31",
-#    "title": titles,
-#    "content": contents,
-#    "template": "markdown"
-# })
-# headers = {
-#    'Content-Type': 'application/json'
-# }
-
-# response = requests.request("POST", url, headers=headers, data=payload)
-
-# print(response.text)
-
-
-# pushplus 一对多推送
+# pushplus 一对多推送，如需一对一删除 topic 参数即可
 
 url = "https://www.pushplus.plus/send"
 
