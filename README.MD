@@ -20,6 +20,7 @@
 - [ ] PostgreSQL/SQLite
 - [ ] WEB UI 界面
 - [ ] 企业微信、钉钉、Telegram、QQ等消息平台
+- [ ] 随机打卡时间
 
 ## 依赖安装
 
