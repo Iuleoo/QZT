@@ -3,6 +3,8 @@ import requests
 import json
 import database
 import base64
+import datetime
+
 
 # 连接到数据库
 with database.connect_to_database() as connection:
@@ -32,26 +34,31 @@ with database.connect_to_database() as connection:
 # 打印用户信息
 print(f"用户名：{user_name}")
 print(f"地址：{address}")
-print(f"Token：{token}")
+#print(f"Token：{token}")
 
-# pushplus 推送
-# code = '打卡成功'
-# title = "{},{}".format(user_name, code)
-# content = {address}
+# SELECT DATA TIMESTAMP
+timestamp = datetime.datetime.now().timestamp() * 1000000 + datetime.datetime.now().microsecond
 
-# url = "https://www.pushplus.plus/send"
+# 转换为字符串
+timestamp_str = str(timestamp)
+print(timestamp_str)
 
-# payload = json.dumps({
-#    "token": "87cdcff73305443c9eb690fe2169fa31",
-#    "title": title,
-#    "content": address,
-#    "template": "markdown"
-# })
-# headers = {
-#    'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
-#    'Content-Type': 'application/json'
-# }
+# pushplus 一对多推送
 
-# response = requests.request("POST", url, headers=headers, data=payload)
+url = "https://www.pushplus.plus/send"
 
-# print(response.text)
+payload = json.dumps({
+   "token": "87cdcff73305443c9eb690fe2169fa31",
+   "title": "消息推送-DEBUG",
+   "content": user_name,
+   "topic": "2024",
+   "timestamp": timestamp_str,
+   "template": "html"
+})
+headers = {
+   'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)

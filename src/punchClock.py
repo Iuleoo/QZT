@@ -3,6 +3,7 @@ import requests
 import base64
 import database
 import sys
+import datetime
 
 # python3 xxx.py 391998
 # 从命令行参数中获取用户 ID
@@ -87,8 +88,14 @@ if code == 0:
 else:
     code_ststus = '打卡失败'
 
+# SELECT DATA TIMESTAMP
+timestamp = datetime.datetime.now().timestamp() * 1000000 + datetime.datetime.now().microsecond
+
+# 转换为字符串
+timestamp_str = str(timestamp)
+
 titles = "{},{}".format(user_name, code_ststus)
-contents = "打卡状态：{}\n打卡地址：{}".format(msg, address_lite)
+contents = "打卡状态：{}\n打卡地址：{}\n服务器时间戳：{}".format(msg, address_lite, timestamp_str)
 
 # pushplus 一对一推送
 
@@ -101,7 +108,6 @@ contents = "打卡状态：{}\n打卡地址：{}".format(msg, address_lite)
 #    "template": "markdown"
 # })
 # headers = {
-#    'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
 #    'Content-Type': 'application/json'
 # }
 
@@ -119,10 +125,10 @@ payload = json.dumps({
    "title": titles,
    "content": contents,
    "topic": "2024",
+   "timestamp": timestamp_str,
    "template": "html"
 })
 headers = {
-   'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
    'Content-Type': 'application/json'
 }
 
