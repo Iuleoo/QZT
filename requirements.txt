@@ -13,6 +13,6 @@ pycrypto==2.6.1
 pycryptodomex==3.20.0
 PyMySQL==1.1.0
 PyYAML==6.0.1
-requests==2.31.0
+requests==2.32.0
 shellescape==3.8.1
 urllib3==2.2.0
