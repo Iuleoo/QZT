@@ -11,7 +11,7 @@ opencv-python-headless==4.9.0.80
 packaging==23.2
 pycrypto==2.6.1
 pycryptodomex==3.20.0
-PyMySQL==1.1.0
+PyMySQL==1.1.1
 PyYAML==6.0.1
 requests==2.31.0
 shellescape==3.8.1
