@@ -15,4 +15,4 @@ PyMySQL==1.1.0
 PyYAML==6.0.1
 requests==2.31.0
 shellescape==3.8.1
-urllib3==2.2.0
+urllib3==2.2.2
