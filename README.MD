@@ -52,21 +52,24 @@ python3 main.py {phonenumber} {password}
 ```
 
 4、数据库`user_info`表需要手动写入 `address`、`address_lite (随便填也行，效果为push推送时所展示地点)`
-示例
+
+下面为示例，带中文注释的需要手动填写
+
+经纬度获取工具：https://api.map.baidu.com/lbsapi/getpoint/index.html
 
 ```
 {
   "typeId": 10,
-  "latitude": 30.654524,
-  "latitude2": "30.654524",
+  "latitude": 30.654524, // 纬度
+  "latitude2": "30.654524", // 纬度（第二组）
   "listPhoto": [],
-  "longitud2": "104.089777",
-  "longitude": 104.089777,
-  "cardRemark": "YSX",
-  "checkRange": 2000,
-  "enterpriseId": "987ef96032b44752a910e53f988ac749",
+  "longitud2": "104.089777", // 经度（第二组）
+  "longitude": 104.089777, // 经度
+  "cardRemark": "YSX", // 姓名
+  "checkRange": 2000, // 签到范围
+  "enterpriseId": "987ef96032b44752a910e53f988ac749", // 企业唯一标识符
   "locationCode": "",
-  "locationName": "四川省成都市成华区成都太古里河畔亚朵酒店"
+  "locationName": "四川省成都市成华区成都太古里河畔亚朵酒店" // 地点名称
 }
 ```
 
