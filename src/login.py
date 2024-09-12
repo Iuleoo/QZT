@@ -8,11 +8,10 @@ import numpy as np
 from aesEncode import encryptAesEcb, decryptAesEcb
 import base64
 
-# 获取当前时间戳（毫秒）
+
 current_time_seconds = time.time()
 timestamp_milliseconds = int(current_time_seconds * 1000)
 
-# 登录函数
 def login(phone, passwd, encrypted_token):
     """
     登录函数
@@ -38,11 +37,8 @@ def login(phone, passwd, encrypted_token):
         "captchaVerification": encrypted_token
     }
     response = requests.post(url, data=json.dumps(data), headers=headers)
-    # 打印返回个人信息
-    # print(response.json())
     return response.json()
 
-# 验证码验证函数
 def checkVerification(encryptedVerification, tokenCoordinateByte):
     """
     验证码验证函数
@@ -67,11 +63,9 @@ def checkVerification(encryptedVerification, tokenCoordinateByte):
         "token": tokenCoordinateByte
     }
     response = requests.post(url, data=json.dumps(data), headers=headers)
-    # 打印返回 第一条JSON
-    # print(response.json())
+
     return response.json()
 
-# 获取验证码函数
 def captchaGget():
     """
     获取验证码函数
@@ -98,7 +92,6 @@ def captchaGget():
 
     return response.json()
 
-# 计算偏移函数
 def calculateOffset(originalImgBase64, jigsawImgBase64):
     """
     计算偏移函数

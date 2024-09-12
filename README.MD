@@ -41,24 +41,49 @@ apt install -y libgl1-mesa-glx
 
 ## 使用
 
-1. 在 `main.py` 中设置数据库地址。
-2. 运行 `main.py` 登录黔职通并获取用户信息。
+1、在 `main.py` 中设置数据库地址。
+
+2、数据库执行`user_info.sql`和`user.sql`文件
+
+3、运行 `main.py` 登录黔职通并获取用户信息。
+
 ```
 python3 main.py {phonenumber} {password}
 ```
-3. 运行 `punchClock.py` 实现上下班打卡和打卡状态推送。
+
+4、数据库`user_info`表需要手动写入 `address`、`address_lite (随便填也行，效果为push推送时所展示地点)`
+示例
+
 ```
+{
+  "typeId": 10,
+  "latitude": 30.654524,
+  "latitude2": "30.654524",
+  "listPhoto": [],
+  "longitud2": "104.089777",
+  "longitude": 104.089777,
+  "cardRemark": "YSX",
+  "checkRange": 2000,
+  "enterpriseId": "987ef96032b44752a910e53f988ac749",
+  "locationCode": "",
+  "locationName": "四川省成都市成华区成都太古里河畔亚朵酒店"
+}
+```
+
+执行SQL
+```UPDATE user_info
+INSERT INTO user_info (typeId, latitude, latitude2, listPhoto, longitud2, longitude, cardRemark, checkRange, enterpriseId, locationCode, locationName) 
+VALUES (10, 30.654524, '30.654524', '[]', '104.089777', 104.089777, 'YSX', 2000, '987ef96032b44752a910e53f988ac749', '', '四川省成都市成华区成都太古里河畔亚朵酒店');
+
+UPDATE user_info
+SET address_lite = '四川省成都市成华区成都太古里河畔亚朵酒店'
+WHERE userid = 391978;
+```
+
+5、运行 `punchClock.py` 实现上下班打卡和打卡状态推送。
+
+```python3 punchClock.py {userId}
 python3 punchClock.py {userId}
-```
-
-## 定时任务
-使用 crontab 表达式，定时执行打卡任务。以下是示例：
-```
-32 9 * * 1-6 cd /opt/qzt && source qzt_venv/bin/activate && python punchClock.py 391997
-28 17 * * 1-6 cd /opt/qzt && source qzt_venv/bin/activate && python punchClock.py 391997
-
-51 9 * * 1-6 cd /opt/qzt && source qzt_venv/bin/activate && python punchClock.py 391998
-36 17 * * 1-6 cd /opt/qzt && source qzt_venv/bin/activate && python punchClock.py 391998
 ```
 
 ## 注意
