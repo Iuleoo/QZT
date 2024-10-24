@@ -2,7 +2,7 @@ certifi==2024.7.4
 charset-normalizer==3.3.2
 crypto==1.4.1
 idna==3.7
-mysql-connector-python==8.3.0
+mysql-connector-python==9.1.0
 mysql-replication==1.0.6
 Naked==0.1.32
 numpy==1.26.3
